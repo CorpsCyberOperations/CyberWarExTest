@@ -175,7 +175,7 @@ teams:
     - username: scorebot
       password: scorebot
     environments:
-     - matching_content: You are connected to database
+    - matching_content: You are connected to database
       properties:
       - name: database
         value: data
