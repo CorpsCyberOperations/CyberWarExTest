@@ -19,14 +19,14 @@ teams:
   services:
   - name: ICMP
     check_name: ICMPCheck
-    host: gig_icmp
+    host: 10.2.1.29
     port: 0
     points: 25
     environments:
     - matching_content: 1 packets transmitted, 1 received
   - name: SSH
     check_name: SSHCheck
-    host: gig_ssh
+    host: 10.2.1.29
     port: 22
     points: 25
     accounts:
@@ -43,7 +43,7 @@ teams:
         value: ps
   - name: HTTP
     check_name: HTTPCheck
-    host: gig_web
+    host: 10.2.1.28
     port: 80
     points: 100
     environments:
@@ -65,24 +65,22 @@ teams:
         value: "/"
   - name: FTP
     check_name: FTPCheck
-    host: gig_ftp
+    host: 10.2.1.24
     port: 21
     points: 100
     accounts:
-    - username: ttesterson
-      password: testpass
-    - username: rpeterson
-      password: otherpass
+    - username: scorebot
+      password: scorebot
     environments:
     - matching_content: "^SUCCESS"
       properties:
       - name: remotefilepath
-        value: "/ftp_files/testfile.txt"
+        value: "data.txt"
       - name: filecontents
-        value: Sample file contents
+        value: Data
   - name: PostgreSQL
     check_name: POSTGRESQLCheck
-    host: gig_postgresql
+    host: 10.2.1.26
     port: 5432
     points: 100
     accounts:
@@ -109,14 +107,14 @@ teams:
   services:
   - name: ICMP
     check_name: ICMPCheck
-    host: ret_icmp
+    host: 10.2.1.23
     port: 0
     points: 25
     environments:
     - matching_content: 1 packets transmitted, 1 received
   - name: SSH
     check_name: SSHCheck
-    host: ret_ssh
+    host: 10.2.1.23
     port: 22
     points: 25
     accounts:
@@ -133,7 +131,7 @@ teams:
         value: ps
   - name: HTTP
     check_name: HTTPCheck
-    host: ret_web
+    host: 10.2.1.27
     port: 80
     points: 100
     environments:
@@ -155,7 +153,7 @@ teams:
         value: "/"
   - name: FTP
     check_name: FTPCheck
-    host: ret_ftp
+    host: 10.2.1.22
     port: 21
     points: 100
     accounts:
@@ -172,7 +170,7 @@ teams:
         value: Sample file contents
   - name: PostgreSQL
     check_name: POSTGRESQLCheck
-    host: ret_postgresql
+    host: 10.2.1.25
     port: 5432
     points: 100
     accounts:
