@@ -1,0 +1,187 @@
+---
+teams:
+- name: admin
+  color: White
+  users:
+  - username: admin
+    password: Cratr25!
+- name: GigEmBytes
+  color: Blue
+  users:
+  - username: user1
+    password: bluepass1
+  - username: user2
+    password: bluepass2
+  - username: user3
+    password: bluepass3
+  - username: user4
+    password: bluepass4
+  services:
+  - name: ICMP
+    check_name: ICMPCheck
+    host: gig_icmp
+    port: 0
+    points: 25
+    environments:
+    - matching_content: 1 packets transmitted, 1 received
+  - name: SSH
+    check_name: SSHCheck
+    host: gig_ssh
+    port: 22
+    points: 25
+    accounts:
+    - username: scorebot
+      password: scorebot
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP
+    check_name: HTTPCheck
+    host: gig_web
+    port: 80
+    points: 100
+    environments:
+    - matching_content: Thank you for using nginx
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: testbed_web
+      - name: uri
+        value: "/"
+    - matching_content: Thank you for using nginx
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: testbed_web
+      - name: uri
+        value: "/"
+  - name: FTP
+    check_name: FTPCheck
+    host: gig_ftp
+    port: 21
+    points: 100
+    accounts:
+    - username: ttesterson
+      password: testpass
+    - username: rpeterson
+      password: otherpass
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remotefilepath
+        value: "/ftp_files/testfile.txt"
+      - name: filecontents
+        value: Sample file contents
+  - name: PostgreSQL
+    check_name: POSTGRESQLCheck
+    host: gig_postgresql
+    port: 5432
+    points: 100
+    accounts:
+    - username: scorebot
+      password: scorebot
+    environments:
+    - matching_content: You are connected to database
+      properties:
+      - name: database
+        value: testdb
+      - name: command
+        value: "\\conninfo"
+  name: Ret2Rev
+  color: Red
+  users:
+  - username: user1
+    password: bluepass1
+  - username: user2
+    password: bluepass2
+  - username: user3
+    password: bluepass3
+  - username: user4
+    password: bluepass4
+  services:
+  - name: ICMP
+    check_name: ICMPCheck
+    host: ret_icmp
+    port: 0
+    points: 25
+    environments:
+    - matching_content: 1 packets transmitted, 1 received
+  - name: SSH
+    check_name: SSHCheck
+    host: ret_ssh
+    port: 22
+    points: 25
+    accounts:
+    - username: scorebot
+      password: scorebot
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: commands
+        value: id;ls -l /home
+    - matching_content: PID
+      properties:
+      - name: commands
+        value: ps
+  - name: HTTP
+    check_name: HTTPCheck
+    host: ret_web
+    port: 80
+    points: 100
+    environments:
+    - matching_content: Thank you for using nginx
+      properties:
+      - name: useragent
+        value: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+      - name: vhost
+        value: testbed_web
+      - name: uri
+        value: "/"
+    - matching_content: Thank you for using nginx
+      properties:
+      - name: useragent
+        value: Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12 Version/12.16
+      - name: vhost
+        value: testbed_web
+      - name: uri
+        value: "/"
+  - name: FTP
+    check_name: FTPCheck
+    host: ret_ftp
+    port: 21
+    points: 100
+    accounts:
+    - username: ttesterson
+      password: testpass
+    - username: rpeterson
+      password: otherpass
+    environments:
+    - matching_content: "^SUCCESS"
+      properties:
+      - name: remotefilepath
+        value: "/ftp_files/testfile.txt"
+      - name: filecontents
+        value: Sample file contents
+  - name: PostgreSQL
+    check_name: POSTGRESQLCheck
+    host: ret_postgresql
+    port: 5432
+    points: 100
+    accounts:
+    - username: scorebot
+      password: scorebot
+    environments:
+    - matching_content: You are connected to database
+      properties:
+      - name: database
+        value: testdb
+      - name: command
+        value: "\\conninfo"
