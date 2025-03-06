@@ -1,6 +1,6 @@
 ---
 teams:
-- name: admin
+- name: WhiteTeam
   color: White
   users:
   - username: admin
