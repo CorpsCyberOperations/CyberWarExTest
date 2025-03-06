@@ -44,7 +44,7 @@ teams:
   - name: HTTP
     check_name: HTTPCheck
     host: 10.2.1.28
-    port: 80
+    port: 8080
     points: 100
     environments:
     - matching_content: Thank you for using nginx
@@ -90,10 +90,10 @@ teams:
     - matching_content: You are connected to database
       properties:
       - name: database
-        value: testdb
+        value: data
       - name: command
         value: "\\conninfo"
-  name: Ret2Rev
+- name: Ret2Rev
   color: Blue
   users:
   - username: Ret1
@@ -132,7 +132,7 @@ teams:
   - name: HTTP
     check_name: HTTPCheck
     host: 10.2.1.27
-    port: 80
+    port: 8080
     points: 100
     environments:
     - matching_content: Thank you for using nginx
@@ -157,17 +157,15 @@ teams:
     port: 21
     points: 100
     accounts:
-    - username: ttesterson
-      password: testpass
-    - username: rpeterson
-      password: otherpass
+    - username: scorebot
+      password: scorebot
     environments:
     - matching_content: "^SUCCESS"
       properties:
       - name: remotefilepath
-        value: "/ftp_files/testfile.txt"
+        value: "data.txt"
       - name: filecontents
-        value: Sample file contents
+        value: Data
   - name: PostgreSQL
     check_name: POSTGRESQLCheck
     host: 10.2.1.25
@@ -177,13 +175,12 @@ teams:
     - username: scorebot
       password: scorebot
     environments:
-    - matching_content: You are connected to database
+     - matching_content: You are connected to database
       properties:
       - name: database
-        value: testdb
+        value: data
       - name: command
         value: "\\conninfo"
-#testing flags
 flags:
   - type: file
     platform: nix
