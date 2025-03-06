@@ -181,6 +181,11 @@ teams:
         value: data
       - name: command
         value: "\\conninfo"
+- name: RedTeam
+  color: Red
+  users:
+  - username: redteamuser
+    password: RedTeam25!
 flags:
   - type: file
     platform: nix
