@@ -8,14 +8,14 @@ teams:
 - name: GigEmBytes
   color: Blue
   users:
-  - username: user1
-    password: bluepass1
-  - username: user2
-    password: bluepass2
-  - username: user3
-    password: bluepass3
-  - username: user4
-    password: bluepass4
+  - username: Gig1
+    password: Gig1
+  - username: Gig2
+    password: Gig2
+  - username: Gig3
+    password: Gig3
+  - username: Gig4
+    password: Gig4
   services:
   - name: ICMP
     check_name: ICMPCheck
@@ -94,16 +94,16 @@ teams:
       - name: command
         value: "\\conninfo"
   name: Ret2Rev
-  color: Red
+  color: Blue
   users:
-  - username: user1
-    password: bluepass1
-  - username: user2
-    password: bluepass2
-  - username: user3
-    password: bluepass3
-  - username: user4
-    password: bluepass4
+  - username: Ret1
+    password: Ret1
+  - username: Ret2
+    password: Ret2
+  - username: Ret3
+    password: Ret3
+  - username: Ret4
+    password: Ret4
   services:
   - name: ICMP
     check_name: ICMPCheck
