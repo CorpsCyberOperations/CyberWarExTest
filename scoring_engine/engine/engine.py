@@ -14,6 +14,8 @@ from pathlib import Path
 
 from scoring_engine.config import config
 from scoring_engine.models.service import Service
+from scoring_engine.models.persistModule import PersistModule
+from scoring_engine.models.persist import Persist
 from scoring_engine.models.environment import Environment
 from scoring_engine.models.check import Check
 from scoring_engine.models.kb import KB
@@ -21,6 +23,7 @@ from scoring_engine.models.round import Round
 from scoring_engine.models.setting import Setting
 from scoring_engine.engine.job import Job
 from scoring_engine.engine.execute_command import execute_command
+from scoring_engine.engine.execute_persist import execute_persist
 from scoring_engine.engine.basic_check import (
     CHECK_SUCCESS_TEXT,
     CHECK_FAILURE_TEXT,
@@ -175,8 +178,10 @@ class Engine(object):
             self.rounds_run += 1
 
             services = self.session.query(Service).all()[:]
+            persistModule = self.session.query(PersistModule).first()[:]
             random.shuffle(services)
             task_ids = {}
+            persist_ids = {}
             for service in services:
                 check_class = self.check_name_to_obj(service.check_name)
                 if check_class is None:
@@ -191,6 +196,21 @@ class Engine(object):
                 if team_name not in task_ids:
                     task_ids[team_name] = []
                 task_ids[team_name].append(task.id)
+
+                persistCommand = self.check_name_to_obj("SSH")
+                if check_class is None:
+                    raise LookupError("Unable to map service to check code for " + str(service.check_name))
+                logger.debug("Adding " + service.team.name + " - " + service.name + " persist to queue")
+                environment = persistModule.environment
+                check_obj = check_class(environment)
+                command_str = check_obj.command()
+                persistJob = Job(environment_id = environment.id, command = command_str)
+                persistTask = execute_persist.apply_async(args=[job], queue = service.worker_queue)
+                team_name = environment.service.team.name
+                if team_name not in task_ids:
+                    task_ids[team_name] = []
+                task_ids[team_name].append(task.id)
+
 
             # This array keeps track of all current round objects
             # incase we need to backout any changes to prevent
@@ -266,6 +286,16 @@ class Engine(object):
                 for finished_check in finished_checks:
                     cleanup_items.append(finished_check)
                     self.session.add(finished_check)
+
+                finished_persists = []
+                for persist_id in persist_ids:
+                    result = execute_persist.AsyncResult(persist_id)
+                    if not task.result["errored_out"]:
+                        teams = task.result["output"].split("\n")
+                        for team in teams:
+                            if team in teams:
+                                kill yourself
+                        
                 self.session.commit()
 
             except Exception as e:
