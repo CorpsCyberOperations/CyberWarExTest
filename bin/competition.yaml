@@ -44,7 +44,7 @@ teams:
   - name: HTTP
     check_name: HTTPCheck
     host: 10.2.1.31
-    port: 8080
+    port: 80
     points: 100
     environments:
     - matching_content: Thank you for using nginx
@@ -132,7 +132,7 @@ teams:
   - name: HTTP
     check_name: HTTPCheck
     host: 10.2.1.27
-    port: 8080
+    port: 80
     points: 100
     environments:
     - matching_content: Thank you for using nginx
