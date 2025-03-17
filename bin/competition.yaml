@@ -43,7 +43,7 @@ teams:
         value: ps
   - name: HTTP
     check_name: HTTPCheck
-    host: 10.2.1.28
+    host: 10.2.1.31
     port: 8080
     points: 100
     environments:
@@ -107,14 +107,14 @@ teams:
   services:
   - name: ICMP
     check_name: ICMPCheck
-    host: 10.2.1.23
+    host: 10.2.1.20
     port: 0
     points: 25
     environments:
     - matching_content: 1 packets transmitted, 1 received
   - name: SSH
     check_name: SSHCheck
-    host: 10.2.1.23
+    host: 10.2.1.20
     port: 22
     points: 25
     accounts:
