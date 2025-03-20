@@ -19,14 +19,14 @@ teams:
   services:
   - name: ICMP
     check_name: ICMPCheck
-    host: 10.2.1.29
+    host: 10.2.1.40
     port: 0
     points: 25
     environments:
     - matching_content: 1 packets transmitted, 1 received
   - name: SSH
     check_name: SSHCheck
-    host: 10.2.1.29
+    host: 10.2.1.40
     port: 22
     points: 25
     accounts:
@@ -43,7 +43,7 @@ teams:
         value: ps
   - name: HTTP
     check_name: HTTPCheck
-    host: 10.2.1.31
+    host: 10.2.1.35
     port: 80
     points: 100
     environments:
@@ -65,7 +65,7 @@ teams:
         value: "/"
   - name: FTP
     check_name: FTPCheck
-    host: 10.2.1.24
+    host: 10.2.1.36
     port: 21
     points: 100
     accounts:
@@ -80,7 +80,7 @@ teams:
         value: Data
   - name: PostgreSQL
     check_name: POSTGRESQLCheck
-    host: 10.2.1.26
+    host: 10.2.1.41
     port: 5432
     points: 100
     accounts:
@@ -107,14 +107,14 @@ teams:
   services:
   - name: ICMP
     check_name: ICMPCheck
-    host: 10.2.1.20
+    host: 10.2.1.39
     port: 0
     points: 25
     environments:
     - matching_content: 1 packets transmitted, 1 received
   - name: SSH
     check_name: SSHCheck
-    host: 10.2.1.20
+    host: 10.2.1.39
     port: 22
     points: 25
     accounts:
@@ -131,7 +131,7 @@ teams:
         value: ps
   - name: HTTP
     check_name: HTTPCheck
-    host: 10.2.1.27
+    host: 10.2.1.38
     port: 80
     points: 100
     environments:
@@ -153,7 +153,7 @@ teams:
         value: "/"
   - name: FTP
     check_name: FTPCheck
-    host: 10.2.1.22
+    host: 10.2.1.37
     port: 21
     points: 100
     accounts:
@@ -168,7 +168,7 @@ teams:
         value: Data
   - name: PostgreSQL
     check_name: POSTGRESQLCheck
-    host: 10.2.1.25
+    host: 10.2.1.42
     port: 5432
     points: 100
     accounts:
